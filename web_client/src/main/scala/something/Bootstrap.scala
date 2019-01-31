@@ -7,9 +7,17 @@ import slinky.hot
 import slinky.web.ReactDOM
 
 import scala.scalajs.LinkingInfo
+import scala.scalajs.js
 import scala.scalajs.js.annotation.JSExportTopLevel
+import scala.scalajs.js.annotation.JSImport
+
+@JSImport("antd/dist/antd.css", JSImport.Default)
+@js.native
+object AntdCSS extends js.Object
 
 object Bootstrap {
+
+  val css = AntdCSS
 
   @JSExportTopLevel("entrypoint.main")
   def main(): Unit = {

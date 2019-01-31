@@ -36,7 +36,8 @@ object WebClient {
       "apollo-boost" -> "0.1.16",
       "react-apollo" -> "2.2.2",
       "graphql-tag" -> "2.10.0",
-      "graphql" -> "14.0.2"
+      "graphql" -> "14.0.2",
+      "antd" -> "3.13.0"
     ),
 
     Compile / npmDevDependencies ++= Seq(

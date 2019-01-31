@@ -1,16 +1,16 @@
 package something
 
+import antd.Button
+import antd.Input
 import com.apollographql.scalajs.react.Mutation
 import com.apollographql.scalajs.react.Query
-import org.scalajs.dom.KeyboardEvent
-import org.scalajs.dom.TextEvent
+import org.scalajs.dom.Event
 import org.scalajs.dom.raw.HTMLInputElement
 import slinky.core._
 import slinky.core.annotations.react
 import slinky.web.html._
 
 import scala.scalajs.js
-import scala.scalajs.js.JSON
 import scala.scalajs.js.annotation.JSImport
 
 @JSImport("resources/Component1.css", JSImport.Default)
@@ -41,16 +41,15 @@ object Component1CSS extends js.Object
           ),
           p("Retrieved from graphQL: " + result.data.get.product.get.name),
           p(result.data.get.product.get.pictures.map(p => img(src := p.url.get))),
-          input(
-            name := "nameField",
-            placeholder := "Insert here the name",
-            value := state.productName,
-            onChange := (event => setState(state.copy(productName = event.target.asInstanceOf[HTMLInputElement].value)))
-          ),
+          Input(Input.Props(
+            value = state.productName,
+            onChange = (e: Event) => setState(state.copy(productName = e.target.asInstanceOf[HTMLInputElement].value))
+          ))(placeholder := "Insert the name here"),
           Mutation(AddProductMutation) { (addProduct, mutationStatus) => {
-            button(onClick := { () => {
+            Button(Button.Props(onClick = (e: Event) => {
               addProduct(AddProductMutation.Variables(state.productName, "NewDescription"))
-            }})("Submit")
+              ()
+            }))("Submit")
           }
           }
         )
