@@ -1,0 +1,3 @@
+mutation AddProduct($name: String!, $description: String!) {
+    addProduct(name: $name, description: $description)
+}

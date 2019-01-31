@@ -1,0 +1,11 @@
+query MyProduct($id: String!, $size: Int!) {
+    product(id: $id) {
+        name
+        pictures(size: $size) {
+          width
+          height
+          url
+        }
+    }
+}
+

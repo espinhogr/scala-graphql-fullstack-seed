@@ -1,0 +1,9 @@
+@()
+
+@main("Welcome to Play with Scala.js and React")(Html("")) {
+    <noscript>
+      You need to enable JavaScript to run this app.
+    </noscript>
+    <div id="root"></div>
+    <script type="text/javascript" src="@routes.Assets.versioned("dist/web_client-fastopt-bundle.js")"></script>
+}
