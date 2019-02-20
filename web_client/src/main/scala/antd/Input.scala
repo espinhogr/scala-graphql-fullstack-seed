@@ -1,11 +1,9 @@
 package antd
 
 import org.scalajs.dom.Event
-import org.scalajs.dom.raw.HTMLInputElement
-import slinky.core.ExternalComponent
 import slinky.core.ExternalComponentWithAttributes
-import slinky.core.ReactComponentClass
 import slinky.core.annotations.react
+import slinky.core.facade.ReactElement
 import slinky.web.html.input
 
 import scala.scalajs.js
@@ -20,14 +18,14 @@ object AntInput extends js.Object {
 }
 
 @react object Input extends ExternalComponentWithAttributes[input.tag.type] {
-  case class Props(addonAfter: UndefOr[String | ReactComponentClass[_]] = js.undefined,
-                   addonBefore: UndefOr[String | ReactComponentClass[_]] = js.undefined,
+  case class Props(addonAfter: UndefOr[String | ReactElement] = js.undefined,
+                   addonBefore: UndefOr[String | ReactElement] = js.undefined,
                    defaultValue: UndefOr[String] = js.undefined,
                    disabled: Boolean = false,
                    id: UndefOr[String] = js.undefined,
-                   prefix: UndefOr[String | ReactComponentClass[_]] = js.undefined,
+                   prefix: UndefOr[String | ReactElement] = js.undefined,
                    size: String = "default",
-                   suffix: UndefOr[String | ReactComponentClass[_]] = js.undefined,
+                   suffix: UndefOr[String | ReactElement] = js.undefined,
                    `type`: String = "text",
                    value: UndefOr[String] = js.undefined,
                    onChange: UndefOr[Event => Unit] = js.undefined,

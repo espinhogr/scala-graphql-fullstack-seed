@@ -9,9 +9,9 @@ import webscalajs.ScalaJSWeb
 
 object WebClient {
 
-  val slinkyVer = "0.5.1"
+  val slinkyVer = "0.5.2"
   val reactVer = "16.5.2"
-  val apolloScalaJsVer = "0.4.3"
+  val apolloScalaJsVer = "0.6.0"
 
 
   private[this] val clientSettings = 
@@ -47,11 +47,11 @@ object WebClient {
       "copy-webpack-plugin" -> "4.5.4",
       "clean-webpack-plugin" -> "1.0.0",
       "webpack-merge" -> "4.1.4",
-      "apollo" -> "2.1.8" 
+      "apollo" -> "2.5.1" 
     ),
 
     webpack / version := "4.21.0",
-    startWebpackDevServer / version := "3.1.9",
+    startWebpackDevServer / version := "3.1.14",
 
     webpackResources := baseDirectory.value / "webpack" * "*",
     fastOptJS / webpackConfigFile := Some(baseDirectory.value / "webpack" / "webpack-fastopt.config.js"),
