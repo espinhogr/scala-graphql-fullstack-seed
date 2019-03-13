@@ -48,9 +48,6 @@ object Server {
     // Sbt-Web
     JsEngineKeys.engineType := JsEngineKeys.EngineType.Node,
     pipelineStages in Assets := Seq(scalaJSPipeline),
-//    pipelineStages in Assets ++= Seq(digest),
-//    includeFilter in digest := "*.js",
-
 
     // Fat-Jar Assembly
     assemblyJarName in assembly := Shared.projectId + ".jar",
@@ -58,6 +55,7 @@ object Server {
       case "play/reference-overrides.conf" => MergeStrategy.concat
       case x => (assemblyMergeStrategy in assembly).value(x)
     },
+    mainClass in assembly := Some("Bootstrap"),
     fullClasspath in assembly += Attributed.blank(PlayKeys.playPackageAssets.value),
   )
 

@@ -7,6 +7,7 @@ import slinky.core.ReactComponentClass
 import slinky.core.annotations.react
 import slinky.core.facade.ReactElement
 
+import scala.collection.mutable
 import scala.scalajs.js
 import scala.scalajs.js.RegExp
 import scala.scalajs.js.UndefOr
@@ -82,8 +83,6 @@ case class FieldDecoratorOptions(getValueFromEvent: UndefOr[Event => js.Object] 
 
   override val component = AntForm.Form
 
-
-
 }
 
 @js.native
@@ -104,7 +103,7 @@ trait FormOps extends js.Object {
   def setFieldValue(fields: Map[String, String]): Unit = js.native
   def validateFields(fieldNames: Map[String, String] = Map(),
                      options: ValidationOptions = ValidationOptions(),
-                     callback: (Map[String, ValidationErrorList], Map[String, Value]) => Unit): Unit = js.native
+                     callback: js.Function2[js.Dictionary[ValidationErrorList], js.Dictionary[Value], Unit]): Unit = js.native
   def validateFieldsAndScroll(fieldNames: Map[String, String] = Map(),
                      options: ValidationOptions = ValidationOptions(),
                      callback: (Map[String, ValidationErrorList], Map[String, Value]) => Unit): Unit = js.native
@@ -134,6 +133,4 @@ trait StaticProps extends js.Object {
 
   override val component = AntForm.Form.Item
 }
-
-
 

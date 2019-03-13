@@ -13,10 +13,10 @@ class ProductRepo extends ProductRepoLike {
 
   def products: List[Product] = productList.toList
 
-  def addProduct(name: String, description: String): Int = {
+  def addProduct(name: String, description: String): Product = {
     val newId = productList.size + 1
     productList = productList :+ Product(newId.toString, name, description)
-    newId
+    Product(newId.toString, name, description)
   }
 }
 

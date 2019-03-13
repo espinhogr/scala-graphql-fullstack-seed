@@ -6,12 +6,12 @@ object ProjectVersionManager {
     val content =s"""
                     |package util
                     |
-      |object Version {
+                    |object Version {
                     |  val projectId = "$projectId"
                     |  val projectName = "$projectName"
                     |  val projectPort = $projectPort
                     |
-      |  val version = "${version.value}"
+                    |  val version = "${version.value}"
                     |}
                     |""".stripMargin.trim
 

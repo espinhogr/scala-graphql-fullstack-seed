@@ -1,0 +1,12 @@
+query AllProducts {
+  products {
+    id
+    name
+    description
+    pictures(size: 500) {
+      width
+      height
+      url
+    }
+  }
+}

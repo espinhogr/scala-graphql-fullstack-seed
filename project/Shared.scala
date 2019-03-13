@@ -51,10 +51,12 @@ object Shared {
       case PathList("META-INF", "io.netty.versions.properties") => MergeStrategy.first
       case PathList("sqlj", _ @ _*) => MergeStrategy.first
       case PathList("play", "reference-overrides.conf") => MergeStrategy.first
+      case PathList("util", "Version$.class") => MergeStrategy.first
       case "module-info.class" => MergeStrategy.discard
       case "messages" => MergeStrategy.concat
       case "pom.xml" => MergeStrategy.discard
       case "JS_DEPENDENCIES" => MergeStrategy.discard
+      case "NPM_DEPENDENCIES" => MergeStrategy.discard
       case "pom.properties" => MergeStrategy.discard
       case "application.conf" => MergeStrategy.concat
       case x => (assemblyMergeStrategy in assembly).value(x)

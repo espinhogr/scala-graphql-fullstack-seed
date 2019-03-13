@@ -10,13 +10,20 @@ Seed project for Play framework + ScalaJS using Apollo client and Sangria.
 - Node installed on the dev box
 - SBT installed on the dev box
 
+## Commands
+
+- run: runs the server and live reloads the changes
+- web_client/Compile/managedSources: generates schema.graphql and query/mutation objects for the client
+- assembly: generates the uber jar 
+
 ## Problems
 
 - WebpackDevServer is not used at the moment
 - Some scalajs is not picked up by Intellij as valid (i.e. the components defined with macros).
 - When a new dependency is added to the npmDependencies the bundle.js is not rebuilt.
-- When a graphql query is changed if the browser is refreshed the new query does not get picked up
 - The build is slow because some files are not cached
+- Add test framework
+- Refetching the queries instead of changing the apollo cache.
 
 ## Credits
 

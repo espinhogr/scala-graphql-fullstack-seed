@@ -34,6 +34,7 @@ object WebClient {
       "react-dom" -> reactVer,
       "react-proxy" -> "1.1.8",
       "apollo-boost" -> "0.1.16",
+      "apollo-cache-inmemory" -> "1.4.3",
       "react-apollo" -> "2.2.2",
       "graphql-tag" -> "2.10.0",
       "graphql" -> "14.0.2",
@@ -47,7 +48,7 @@ object WebClient {
       "copy-webpack-plugin" -> "4.5.4",
       "clean-webpack-plugin" -> "1.0.0",
       "webpack-merge" -> "4.1.4",
-      "apollo" -> "2.5.1" 
+      "apollo" -> "2.5.3"
     ),
 
     webpack / version := "4.21.0",
@@ -67,7 +68,7 @@ object WebClient {
 
   lazy val web_client = (project in file("web_client"))
     .settings(clientSettings: _*)
-    .settings(addCommandAlias("dev", ";fastOptJS::startWebpackDevServer;~fastOptJS"): _*)
+//    .settings(addCommandAlias("dev", ";fastOptJS::startWebpackDevServer;~fastOptJS"): _*)
     .enablePlugins(ScalaJSPlugin, ScalaJSWeb, ScalaJSBundlerPlugin)
     .dependsOn(Shared.sharedJs, Schema.schema)
 }

@@ -1,3 +1,7 @@
 mutation AddProduct($name: String!, $description: String!) {
-    addProduct(name: $name, description: $description)
+    addProduct(name: $name, description: $description) {
+        id
+        name
+        description
+    }
 }

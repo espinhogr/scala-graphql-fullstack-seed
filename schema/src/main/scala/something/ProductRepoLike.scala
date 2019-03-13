@@ -8,6 +8,6 @@ trait ProductRepoLike {
 
   def products: List[RetailProduct]
 
-  def addProduct(name: String, description: String): Int
+  def addProduct(name: String, description: String): RetailProduct
 
 }

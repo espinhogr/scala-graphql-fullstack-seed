@@ -36,7 +36,7 @@ object Bootstrap {
       uri = "/graphql"
     )
 
-    ReactDOM.render(ApolloProvider(client)(Component1()), container)
+    ReactDOM.render(ApolloProvider(client)(MainPage()), container)
 
   }
 }

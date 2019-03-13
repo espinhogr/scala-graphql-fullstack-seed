@@ -30,7 +30,7 @@ object GraphQLSchema {
 
   val Id = Argument("id", StringType)
 
-  val QueryType = ObjectType("Query", fields[RequestContext, Unit](
+  val QueryType = ObjectType("Query", fields[RequestContext, Any](
     Field("product", OptionType(ProductType),
       description = Some("Returns a product with specific `id`."),
       arguments = Id :: Nil,
@@ -44,8 +44,8 @@ object GraphQLSchema {
   val DescriptionArg = Argument("description", StringType)
 
   val MutationType = ObjectType("Mutation",
-    fields[RequestContext, Unit](
-      Field("addProduct", OptionType(IntType),
+    fields[RequestContext, Any](
+      Field("addProduct", ProductType,
         arguments = NameArg :: DescriptionArg :: Nil,
         resolve = req => req.ctx.productRepo.addProduct(req.arg(NameArg), req.arg(DescriptionArg))
       )
