@@ -1,4 +1,4 @@
-package something
+package com.mypackage
 
 object Domain {
 

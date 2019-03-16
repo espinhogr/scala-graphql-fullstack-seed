@@ -5,9 +5,9 @@ import sbt.internal.inc.classpath.ClasspathUtilities
 /**
   * Tools to generate at build time the SDL for graphql from the defined schema in Sangria-Scala.
   * 
-  * Replace with sbt-graphql. After a fast test i've noticed that when the task in sbt-graphql used 
-  * to generate the schema is added to the (Compile / resourceGenerators) task list, if the project is
-  * built, sbt goes into infinite loop.
+  * To be replaced with sbt-graphql. After a fast test i've noticed that when the task in sbt-graphql used 
+  * to generate the schema is added to the (Compile / resourceGenerators) task list, when the project is
+  * built, sbt enters infinite loop.
   */
 object GraphqlUtils {
 
@@ -33,7 +33,7 @@ object GraphqlUtils {
 
     Compile / resourceGenerators += Compile / generateGraphqlSdlFromScala,
 
-    queryClassesPackage := "something",
+    queryClassesPackage := "com.mypackage",
 
     generateGraphqlQueries := {
       import scala.sys.process._

@@ -1,4 +1,4 @@
-package something
+package com.mypackage
 
 import com.apollographql.scalajs.ApolloBoostClient
 import com.apollographql.scalajs.react.ApolloProvider

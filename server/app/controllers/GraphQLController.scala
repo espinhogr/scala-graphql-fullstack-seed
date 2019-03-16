@@ -13,8 +13,8 @@ import sangria.execution.Executor
 import sangria.execution.QueryAnalysisError
 import sangria.marshalling.playJson._
 import sangria.parser.QueryParser
-import something.GraphQLSchema._
-import something.RequestContext
+import com.mypackage.GraphQLSchema._
+import com.mypackage.RequestContext
 
 import scala.concurrent.Future
 import scala.util.Failure

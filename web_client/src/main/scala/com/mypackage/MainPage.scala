@@ -1,4 +1,4 @@
-package something
+package com.mypackage
 
 import antd.AntForm
 import antd.Col
@@ -12,6 +12,7 @@ import slinky.core._
 import slinky.core.annotations.react
 import slinky.core.facade.React
 import slinky.web.html._
+import util.Version
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
@@ -20,7 +21,7 @@ import scala.scalajs.js.annotation.JSImport
 @js.native
 object MainPageCSS extends js.Object
 
-private[something] case class Product(name: String, description: String, image: String)
+private[mypackage] case class Product(name: String, description: String, image: String)
 
 @react class MainPage extends Component {
   type Props = Unit
@@ -35,7 +36,7 @@ private[something] case class Product(name: String, description: String, image: 
       renderHeader(),
       renderContent(),
       LayoutFooter(LayoutFooter.Props())(
-        span("This is a footer")
+        span(s"Version ${Version.version}")
       )
     )
   }

@@ -1,8 +1,8 @@
 package repositories
 
-import something.Domain
-import something.Domain.Picture
-import something.PictureRepoLike
+import com.mypackage.PictureRepoLike
+import com.mypackage.Domain
+import com.mypackage.Domain.Picture
 
 class PictureRepo extends PictureRepoLike {
 

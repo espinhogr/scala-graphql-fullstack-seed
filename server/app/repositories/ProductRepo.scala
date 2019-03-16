@@ -1,7 +1,7 @@
 package repositories
 
-import something.Domain.Product
-import something.ProductRepoLike
+import com.mypackage.Domain.Product
+import com.mypackage.ProductRepoLike
 
 class ProductRepo extends ProductRepoLike {
   private var productList = Vector(

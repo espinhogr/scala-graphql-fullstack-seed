@@ -21,7 +21,7 @@ Seed project for Play framework + ScalaJS using Apollo client and Sangria.
 - WebpackDevServer is not used at the moment
 - Some scalajs is not picked up by Intellij as valid (i.e. the components defined with macros).
 - When a new dependency is added to the npmDependencies the bundle.js is not rebuilt.
-- The build is slow because some files are not cached
+- The build is slow because some files are not cached (static query generation and two rounds of js bundling) and the dist directory is deleted.
 - Add test framework
 - Refetching the queries instead of changing the apollo cache.
 

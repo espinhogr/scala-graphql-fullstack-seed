@@ -1,4 +1,4 @@
-package something
+package com.mypackage
 
 import antd.Card
 import antd.CardMeta

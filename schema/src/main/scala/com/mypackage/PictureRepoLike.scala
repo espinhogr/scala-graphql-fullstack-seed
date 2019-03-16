@@ -1,6 +1,6 @@
-package something
+package com.mypackage
 
-import something.Domain.Picture
+import com.mypackage.Domain.Picture
 
 trait PictureRepoLike {
 

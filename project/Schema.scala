@@ -17,8 +17,7 @@ object Schema {
       "org.sangria-graphql" %% "sangria" % "1.4.2",
     ),
 
-    schemaObject := "something.GraphQLSchema",
-    
+    schemaObject := "com.mypackage.GraphQLSchema",
     
   )
 

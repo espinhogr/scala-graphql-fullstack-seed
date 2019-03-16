@@ -1,6 +1,6 @@
-package something
+package com.mypackage
 
-import something.Domain.{Product => RetailProduct}
+import com.mypackage.Domain.{Product => RetailProduct}
 
 trait ProductRepoLike {
 

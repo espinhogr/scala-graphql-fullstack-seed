@@ -1,8 +1,8 @@
-package something
+package com.mypackage
 
 import sangria.macros.derive._
 import sangria.schema._
-import something.Domain._
+import com.mypackage.Domain._
 
 object GraphQLSchema {
 

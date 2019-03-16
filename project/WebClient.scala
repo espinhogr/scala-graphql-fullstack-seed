@@ -17,7 +17,7 @@ object WebClient {
   private[this] val clientSettings = 
     Shared.commonSettings ++ WebpackUtils.wiringTasks ++ GraphqlUtils.generateTasks ++ Seq(
     scalaJSUseMainModuleInitializer := true, // Starts scalajs from a main function
-    mainClass in Compile := Some("something.Bootstrap"),
+    mainClass in Compile := Some("com.mypackage.Bootstrap"),
 
     resolvers += "Apollo Bintray" at "https://dl.bintray.com/apollographql/maven/",
 
