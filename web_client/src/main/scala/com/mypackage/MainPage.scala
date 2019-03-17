@@ -26,7 +26,7 @@ object MainPageCSS extends js.Object
   private val css = MainPageCSS
 
   def render() = {
-    Layout(Layout.Props())(
+    Layout(Layout.Props(className = "main-layout"))(
       renderHeader(),
       renderContent(),
       LayoutFooter(LayoutFooter.Props())(
@@ -45,7 +45,7 @@ object MainPageCSS extends js.Object
 
   private def renderHeader() = {
     LayoutHeader(LayoutHeader.Props())(
-      h1(className := "App-title")("Welcome to React (with Scala.js!) on Play")
+      h1(className := "app-title")("Welcome to React (with Scala.js!) on Play")
     )
   }
 }

@@ -1,3 +1,7 @@
-.App-title {
-   color: #0F0;
+.app-title {
+    color: #0F0;
+}
+
+.main-layout {
+    height: 100vh;
 }

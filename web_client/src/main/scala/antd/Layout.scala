@@ -24,7 +24,7 @@ trait AntLayoutObj extends js.Object {
 @react object Layout extends ExternalComponent {
   case class Props(className: UndefOr[String] = js.undefined,
                    hasSider: UndefOr[Boolean] = js.undefined,
-                   style: UndefOr[ReactElement] = js.undefined)
+                   style: UndefOr[js.Object] = js.undefined)
 
   override val component = AntLayout.Layout
 }
@@ -32,7 +32,7 @@ trait AntLayoutObj extends js.Object {
 @react object LayoutHeader extends ExternalComponent {
   case class Props(className: UndefOr[String] = js.undefined,
                    hasSider: UndefOr[Boolean] = js.undefined,
-                   style: UndefOr[ReactElement] = js.undefined)
+                   style: UndefOr[js.Object] = js.undefined)
 
   override val component = AntLayout.Layout.Header
 }
@@ -40,7 +40,7 @@ trait AntLayoutObj extends js.Object {
 @react object LayoutFooter extends ExternalComponent {
   case class Props(className: UndefOr[String] = js.undefined,
                    hasSider: UndefOr[Boolean] = js.undefined,
-                   style: UndefOr[ReactElement] = js.undefined)
+                   style: UndefOr[js.Object] = js.undefined)
 
   override val component = AntLayout.Layout.Footer
 }
@@ -48,7 +48,7 @@ trait AntLayoutObj extends js.Object {
 @react object LayoutContent extends ExternalComponent {
   case class Props(className: UndefOr[String] = js.undefined,
                    hasSider: UndefOr[Boolean] = js.undefined,
-                   style: UndefOr[ReactElement] = js.undefined)
+                   style: UndefOr[js.Object] = js.undefined)
 
   override val component = AntLayout.Layout.Content
 }

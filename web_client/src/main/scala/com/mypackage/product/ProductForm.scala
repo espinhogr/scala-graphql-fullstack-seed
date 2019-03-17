@@ -73,5 +73,10 @@ object MutationType {
       )
     }
 
+  /**
+    * This is needed as Antd forms are created as higher order component
+    * and a form property is injected in the props by the framework.
+    * This is a workaround to access that property.
+    */
   def form: FormOps = this.asInstanceOf[StaticProps].props.form
 }
