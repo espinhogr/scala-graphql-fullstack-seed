@@ -8,53 +8,68 @@ import antd.FormOps
 import antd.Input
 import antd.StaticProps
 import antd.ValidationRules
+import com.apollographql.scalajs.GraphQLMutation
+import com.apollographql.scalajs.react.CallMutationProps
 import com.apollographql.scalajs.react.Mutation
 import com.apollographql.scalajs.react.MutationResult
 import com.apollographql.scalajs.react.UpdateStrategy
+import com.mypackage.MutationType.MutationCallback
 import org.scalajs.dom.Event
-import org.scalajs.dom.raw.HTMLInputElement
-import slinky.core.Component
+import slinky.core.StatelessComponent
 import slinky.core.annotations.react
 import slinky.core.facade.ReactElement
 import slinky.web.html.placeholder
 
+import scala.collection.mutable
+import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
+import scala.scalajs.js.JSConverters._
 import scala.scalajs.js.JSON
+import scala.scalajs.js.RegExp
 
-@react class ProductForm extends Component {
+object MutationType {
+  type MutationCallback[Q <: GraphQLMutation] = CallMutationProps[Q#Variables] => Future[MutationResult[Q#Data]]
+}
+
+@react class ProductForm extends StatelessComponent {
   type Props = Unit
-  case class State(newProduct: Product)
-
-  override def initialState: State = State(Product("", "", ""))
 
   def handleSubmit(e: Event,
-                   submitCall: => Future[MutationResult[AddProductMutation.Data]]): Unit = {
+                   submitCall: MutationCallback[AddProductMutation.type]): Unit = {
     e.preventDefault()
-    form.validateFields(callback = (errors, values) => {
+    form.validateFields((errors, values) => {
       if (errors != null) {
         println("Received errors " + JSON.stringify(errors))
       } else {
         println("Received values " + JSON.stringify(values))
-        submitCall
+        val valuesMap: mutable.Map[String, String] = values
+        submitCall(AddProductMutation.Variables(valuesMap("productName"), valuesMap("productDescription"))).onComplete { _ =>
+          form.setFieldsValue(Map("productName" -> "", "productDescription" -> "").toJSDictionary)
+        }
       }
     })
   }
 
   override def render(): ReactElement =
-    Form(Form.Props())(
-      FormItem(FormItem.Props())(
-        form.getFieldDecorator("product", FieldDecoratorOptions(rules = Seq(ValidationRules(required = true, message = "Please input your username"))))(
-          Input(Input.Props(
-            onChange = (e: Event) => setState(state.copy(newProduct = Product(e.target.asInstanceOf[HTMLInputElement].value, "Default description", "")))
-          ))(placeholder := "New Product")
-        )
-      ),
-      Mutation(AddProductMutation, UpdateStrategy(refetchQueries = Seq("AllProducts"))) { (addProduct, mutationStatus) =>
-        Button(Button.Props(`type` = "primary", htmlType = "submit", onClick = (e: Event) => {
-          handleSubmit(e, addProduct(AddProductMutation.Variables(state.newProduct.name, "NewDescription")))
-        }))("Add")
-      }
-    )
+    Mutation(AddProductMutation, UpdateStrategy(refetchQueries = Seq("AllProducts"))) { (addProduct, mutationStatus) =>
+      Form(Form.Props(onSubmit = (e: Event) => {
+        handleSubmit(e, addProduct)
+      }))(
+        FormItem(FormItem.Props())(
+          form.getFieldDecorator("productName", FieldDecoratorOptions(rules = Seq(ValidationRules(required = true, message = "Cannot contain numbers or be empty.", pattern = RegExp("^[^0-9]+$")))))(
+            Input(Input.Props(
+            ))(placeholder := "Name")
+          )
+        ),
+        FormItem(FormItem.Props())(
+          form.getFieldDecorator("productDescription", FieldDecoratorOptions(rules = Seq(ValidationRules(required = true, message = "Cannot be empty."))))(
+            Input(Input.Props(
+            ))(placeholder := "Description")
+          )
+        ),
+        Button(Button.Props(`type` = "primary", htmlType = "submit"))("Add")
+      )
+    }
 
   def form: FormOps = this.asInstanceOf[StaticProps].props.form
 }

@@ -49,7 +49,7 @@ private[mypackage] case class Product(name: String, description: String, image: 
       hr(style := js.Dynamic.literal(margin = "30px")),
       Row(Row.Props())(
         Col(Col.Props(span = 24))(
-          h1("Something"),
+          h1("Insert a new product"),
           React.createElement(wrappedProductForm, js.Dictionary())
         )
       )
