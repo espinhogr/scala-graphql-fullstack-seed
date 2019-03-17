@@ -18,6 +18,7 @@ import org.scalajs.dom.Event
 import slinky.core.StatelessComponent
 import slinky.core.annotations.react
 import slinky.core.facade.ReactElement
+import slinky.web.html.autoComplete
 import slinky.web.html.placeholder
 
 import scala.collection.mutable
@@ -58,13 +59,13 @@ object MutationType {
         FormItem(FormItem.Props())(
           form.getFieldDecorator("productName", FieldDecoratorOptions(rules = Seq(ValidationRules(required = true, message = "Cannot contain numbers or be empty.", pattern = RegExp("^[^0-9]+$")))))(
             Input(Input.Props(
-            ))(placeholder := "Name")
+            ))(placeholder := "Name", autoComplete := "off")
           )
         ),
         FormItem(FormItem.Props())(
           form.getFieldDecorator("productDescription", FieldDecoratorOptions(rules = Seq(ValidationRules(required = true, message = "Cannot be empty."))))(
             Input(Input.Props(
-            ))(placeholder := "Description")
+            ))(placeholder := "Description", autoComplete := "off")
           )
         ),
         Button(Button.Props(`type` = "primary", htmlType = "submit"))("Add")
