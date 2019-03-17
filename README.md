@@ -10,6 +10,9 @@ Seed project for Play framework + ScalaJS using Apollo client and Sangria.
 - Node installed on the dev box
 - SBT installed on the dev box
 
+## Setup
+Follow the setup [here](https://slinky.shadaj.me/docs/installation/) for IntelliJ support.
+
 ## Commands
 
 - run: runs the server and live reloads the changes
@@ -19,7 +22,6 @@ Seed project for Play framework + ScalaJS using Apollo client and Sangria.
 ## Problems
 
 - WebpackDevServer is not used at the moment
-- Some scalajs is not picked up by Intellij as valid (i.e. the components defined with macros).
 - When a new dependency is added to the npmDependencies the bundle.js is not rebuilt.
 - The build is slow because some files are not cached (static query generation and two rounds of js bundling) and the dist directory is deleted.
 - Add test framework
