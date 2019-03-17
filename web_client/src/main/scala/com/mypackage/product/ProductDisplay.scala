@@ -32,13 +32,7 @@ import scala.scalajs.js
           Row(Row.Props(gutter = 16, justify = "space-around", align = "middle"))(
             result.data.get.products.map { product =>
               Col(Col.Props(span = 6))(
-                Card(Card.Props(
-                  cover = img(src := product.pictures.headOption.flatMap(_.url).getOrElse("/assets/images/default_item.jpg"))()
-                ))(style := js.Dynamic.literal(maxWidth = "240px"))(
-                  CardMeta(
-                    CardMeta.Props(title = span(product.name), description = span(product.description))
-                  )
-                )
+                renderProductCard(product)
               )
             }: _*
           )
@@ -46,4 +40,12 @@ import scala.scalajs.js
       }
     }
 
+  private def renderProductCard(product: AllProductsQuery.Data.Product) =
+    Card(Card.Props(
+      cover = img(src := product.pictures.headOption.flatMap(_.url).getOrElse("/assets/images/default_item.jpg"))()
+    ))(style := js.Dynamic.literal(maxWidth = "240px"))(
+      CardMeta(
+        CardMeta.Props(title = span(product.name), description = span(product.description))
+      )
+    )
 }
