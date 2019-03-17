@@ -1,17 +1,16 @@
 package com.mypackage
 
-import antd.AntForm
-import antd.Col
 import antd.Layout
-import antd.LayoutContent
 import antd.LayoutFooter
 import antd.LayoutHeader
-import antd.Row
+import reactrouter.BrowserRouter
+import reactrouter.Route
 import slinky.core.ReactComponentClass._
 import slinky.core._
 import slinky.core.annotations.react
-import slinky.core.facade.React
+import slinky.core.facade.ReactElement
 import slinky.web.html._
+import product.Products
 import util.Version
 
 import scala.scalajs.js
@@ -21,15 +20,10 @@ import scala.scalajs.js.annotation.JSImport
 @js.native
 object MainPageCSS extends js.Object
 
-private[mypackage] case class Product(name: String, description: String, image: String)
-
-@react class MainPage extends Component {
+@react class MainPage extends StatelessComponent {
   type Props = Unit
-  case class State(allProducts: Seq[Product])
 
   private val css = MainPageCSS
-
-  override def initialState: State = State(Seq())
 
   def render() = {
     Layout(Layout.Props())(
@@ -42,17 +36,10 @@ private[mypackage] case class Product(name: String, description: String, image: 
   }
 
   private def renderContent() = {
-    val wrappedProductForm = AntForm.Form.create()(wrapperToClass(ProductForm))
-
-    LayoutContent(LayoutContent.Props())(style := js.Dynamic.literal(padding = "50px"))(
-      ProductDisplay(),
-      hr(style := js.Dynamic.literal(margin = "30px")),
-      Row(Row.Props())(
-        Col(Col.Props(span = 24))(
-          h1("Insert a new product"),
-          React.createElement(wrappedProductForm, js.Dictionary())
-        )
-      )
+    val testComponent: js.Function0[ReactElement] = () => h1("Test")
+    BrowserRouter(BrowserRouter.Props())(
+      Route(Route.Props(path = "/", exact = true, component = wrapperToClass(Products))),
+      Route(Route.Props(path = "/test", render = testComponent))
     )
   }
 

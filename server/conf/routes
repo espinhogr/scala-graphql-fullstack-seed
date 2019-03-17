@@ -7,5 +7,9 @@ POST    /graphql                    controllers.GraphQLController.graphql
 
 GET     /graphiql                   controllers.GraphQLController.graphiQL
 
-GET     /                           controllers.HomeController.index()
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+
+GET     /                           controllers.HomeController.index()
+
+# This route has to be the last one because it catches all the paths
+GET     /*dynamic                   controllers.HomeController.dynamicPath(dynamic)

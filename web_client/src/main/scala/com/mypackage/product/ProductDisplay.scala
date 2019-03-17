@@ -1,10 +1,11 @@
-package com.mypackage
+package com.mypackage.product
 
 import antd.Card
 import antd.CardMeta
 import antd.Col
 import antd.Row
 import com.apollographql.scalajs.react.Query
+import com.mypackage.AllProductsQuery
 import slinky.core.StatelessComponent
 import slinky.core.annotations.react
 import slinky.web.html.div

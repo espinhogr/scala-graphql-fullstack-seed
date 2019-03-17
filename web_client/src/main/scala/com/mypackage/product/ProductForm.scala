@@ -1,4 +1,4 @@
-package com.mypackage
+package com.mypackage.product
 
 import antd.Button
 import antd.FieldDecoratorOptions
@@ -13,7 +13,8 @@ import com.apollographql.scalajs.react.CallMutationProps
 import com.apollographql.scalajs.react.Mutation
 import com.apollographql.scalajs.react.MutationResult
 import com.apollographql.scalajs.react.UpdateStrategy
-import com.mypackage.MutationType.MutationCallback
+import com.mypackage.AddProductMutation
+import com.mypackage.product.MutationType.MutationCallback
 import org.scalajs.dom.Event
 import slinky.core.StatelessComponent
 import slinky.core.annotations.react
