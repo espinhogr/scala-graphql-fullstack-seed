@@ -15,7 +15,14 @@ object AntButton extends js.Object {
   val Button: js.Object = js.native
 }
 
-case class Delay(delay: Int)
+@js.native
+trait Delay extends js.Object {
+  val delay: Int = js.native
+}
+object Delay {
+  def apply(delay: Int) = js.Dynamic.literal(delay = delay).asInstanceOf[Delay]
+}
+
 
 @react object Button extends ExternalComponent {
   case class Props(disabled: Boolean = false,

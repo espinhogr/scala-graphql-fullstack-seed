@@ -7,6 +7,7 @@ import slinky.core.facade.ReactElement
 import scala.scalajs.js
 import scala.scalajs.js.UndefOr
 import scala.scalajs.js.annotation.JSImport
+import scala.scalajs.js.|
 
 @JSImport("antd", JSImport.Default)
 @js.native
@@ -19,6 +20,7 @@ trait AntLayoutObj extends js.Object {
   val Header: js.Object = js.native
   val Footer: js.Object = js.native
   val Content: js.Object = js.native
+  val Sider: js.Object = js.native
 }
 
 @react object Layout extends ExternalComponent {
@@ -51,4 +53,22 @@ trait AntLayoutObj extends js.Object {
                    style: UndefOr[js.Object] = js.undefined)
 
   override val component = AntLayout.Layout.Content
+}
+
+@react object LayoutSider extends ExternalComponent {
+  case class Props(breakpoint: UndefOr[String] = js.undefined,
+                   className: UndefOr[String] = js.undefined,
+                   collapsed: UndefOr[Boolean] = js.undefined,
+                   collapsedWidth: Int = 80,
+                   collapsible: Boolean = false,
+                   defaultCollapsed: Boolean = false,
+                   reverseArrow: Boolean = false,
+                   style: UndefOr[js.Object] = js.undefined,
+                   theme: String = "dark",
+                   trigger: UndefOr[String | ReactElement] = js.undefined,
+                   width: Int | String = 200,
+                   onCollapse: UndefOr[js.Function2[js.Object, js.Object, js.Any]] = js.undefined,
+                   onBreakpoint: UndefOr[js.Function1[js.Object, js.Any]] = js.undefined)
+
+  override val component = AntLayout.Layout.Sider
 }
