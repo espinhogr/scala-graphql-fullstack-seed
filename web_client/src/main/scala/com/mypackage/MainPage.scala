@@ -33,7 +33,7 @@ object MainPageCSS extends js.Object
     Layout(Layout.Props(className = "main-layout"))(
       renderHeader(),
       renderContent(),
-      LayoutFooter(LayoutFooter.Props())(
+      LayoutFooter(
         span(s"Version ${Version.version}")
       )
     )
@@ -42,10 +42,10 @@ object MainPageCSS extends js.Object
   private def renderContent() = {
     val testComponent: js.Function0[ReactElement] = () => h1("Test")
 
-    BrowserRouter(BrowserRouter.Props())(
-      Layout(Layout.Props())(
+    BrowserRouter(
+      Layout(
         renderSider(),
-        Layout(Layout.Props())(
+        Layout(
           Route(Route.Props(path = "/", exact = true, component = wrapperToClass(Products))),
           Route(Route.Props(path = "/test", render = testComponent))
         )
@@ -54,7 +54,7 @@ object MainPageCSS extends js.Object
   }
 
   private def renderHeader() =
-    LayoutHeader(LayoutHeader.Props())(
+    LayoutHeader(
       h1(className := "app-title")("Welcome to React (with Scala.js!) on Play")
     )
 

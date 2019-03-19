@@ -11,7 +11,7 @@ object WebClient {
 
   val slinkyVer = "0.5.2+6-10d43572"
   val reactVer = "16.5.2"
-  val apolloScalaJsVer = "0.6.0"
+  val apolloScalaJsVer = "0.6.1-SNAPSHOT"
 
 
   private[this] val clientSettings = 

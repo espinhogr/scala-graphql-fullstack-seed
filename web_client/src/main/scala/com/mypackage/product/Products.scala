@@ -23,7 +23,7 @@ import scala.scalajs.js
     LayoutContent(LayoutContent.Props())(style := js.Dynamic.literal(padding = "50px"))(
       ProductDisplay(),
       hr(style := js.Dynamic.literal(margin = "30px")),
-      Row(Row.Props())(
+      Row(
         Col(Col.Props(span = 24))(
           h1("Insert a new product"),
           React.createElement(wrappedProductForm, js.Dictionary())

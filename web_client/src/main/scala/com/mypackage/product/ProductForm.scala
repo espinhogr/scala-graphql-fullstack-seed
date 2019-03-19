@@ -57,16 +57,14 @@ object MutationType {
       Form(Form.Props(onSubmit = (e: Event) => {
         handleSubmit(e, addProduct)
       }))(
-        FormItem(FormItem.Props())(
+        FormItem(
           form.getFieldDecorator("productName", FieldDecoratorOptions(rules = Seq(ValidationRules(required = true, message = "Cannot contain numbers or be empty.", pattern = RegExp("^[^0-9]+$")))))(
-            Input(Input.Props(
-            ))(placeholder := "Name", autoComplete := "off")
+            Input(Input.Props())(placeholder := "Name", autoComplete := "off")
           )
         ),
-        FormItem(FormItem.Props())(
+        FormItem(
           form.getFieldDecorator("productDescription", FieldDecoratorOptions(rules = Seq(ValidationRules(required = true, message = "Cannot be empty."))))(
-            Input(Input.Props(
-            ))(placeholder := "Description", autoComplete := "off")
+            Input(Input.Props())(placeholder := "Description", autoComplete := "off")
           )
         ),
         Button(Button.Props(`type` = "primary", htmlType = "submit"))("Add")
