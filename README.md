@@ -9,6 +9,7 @@ Seed project for Play framework + ScalaJS using Apollo client and Sangria.
 
 - Node installed on the dev box
 - SBT installed on the dev box
+- Follow the instructions in the file `project/WebClient.scala`
 
 ## Setup
 Follow the setup [here](https://slinky.shadaj.me/docs/installation/) for IntelliJ support.

@@ -8,13 +8,10 @@ import antd.FormOps
 import antd.Input
 import antd.StaticProps
 import antd.ValidationRules
-import com.apollographql.scalajs.GraphQLMutation
-import com.apollographql.scalajs.react.CallMutationProps
 import com.apollographql.scalajs.react.Mutation
-import com.apollographql.scalajs.react.MutationResult
+import com.apollographql.scalajs.react.Mutation.StaticMutationAsyncCallback
 import com.apollographql.scalajs.react.UpdateStrategy
 import com.mypackage.AddProductMutation
-import com.mypackage.product.MutationType.MutationCallback
 import org.scalajs.dom.Event
 import slinky.core.StatelessComponent
 import slinky.core.annotations.react
@@ -24,20 +21,15 @@ import slinky.web.html.placeholder
 
 import scala.collection.mutable
 import scala.concurrent.ExecutionContext.Implicits.global
-import scala.concurrent.Future
 import scala.scalajs.js.JSConverters._
 import scala.scalajs.js.JSON
 import scala.scalajs.js.RegExp
-
-object MutationType {
-  type MutationCallback[Q <: GraphQLMutation] = CallMutationProps[Q#Variables] => Future[MutationResult[Q#Data]]
-}
 
 @react class ProductForm extends StatelessComponent {
   type Props = Unit
 
   def handleSubmit(e: Event,
-                   submitCall: MutationCallback[AddProductMutation.type]): Unit = {
+                   submitCall: StaticMutationAsyncCallback[AddProductMutation.type]): Unit = {
     e.preventDefault()
     form.validateFields((errors, values) => {
       if (errors != null) {

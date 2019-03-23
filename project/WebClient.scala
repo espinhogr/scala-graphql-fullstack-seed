@@ -11,6 +11,25 @@ object WebClient {
 
   val slinkyVer = "0.5.2+6-10d43572"
   val reactVer = "16.5.2"
+  
+  /* 
+   * This version is not available yet, the changes needed to make this project work are in the master but still
+   * need to be released.
+   * 
+   * In order to make this work, follow these steps: 
+   * 1. clone the repo https://github.com/apollographql/apollo-scalajs
+   * 2. change the file "build.sbt" adding at its top the lines (backtick not included):
+   *     ```
+   *     version in ThisBuild := "0.6.1-SNAPSHOT"
+   *
+   *     dynver in ThisBuild := "0.6.1-SNAPSHOT"
+   * 
+   *     ```
+   * 3. run the command (backtick not included):
+   *     ```
+   *     sbt publishLocal
+   *     ```
+   */
   val apolloScalaJsVer = "0.6.1-SNAPSHOT"
 
 

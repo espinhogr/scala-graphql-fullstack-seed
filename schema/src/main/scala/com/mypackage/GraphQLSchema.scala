@@ -13,7 +13,7 @@ object GraphQLSchema {
     fields[RequestContext, Identifiable](
       Field("id", StringType, resolve = _.value.id)))
 
-  implicit val PictureType =
+  val PictureType =
     deriveObjectType[Unit, Picture](
       ObjectTypeDescription("The product picture"),
       DocumentField("url", "Picture CDN URL"))
