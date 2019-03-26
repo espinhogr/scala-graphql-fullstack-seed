@@ -14,6 +14,9 @@ import slinky.web.html.img
 import slinky.web.html.span
 import slinky.web.html.src
 import slinky.web.html.style
+import slinky.core.WithAttrs._
+import slinky.core.BuildingComponent._
+import slinky.core.TagMod
 
 import scala.scalajs.js
 
@@ -33,7 +36,7 @@ import scala.scalajs.js
             result.data.get.products.map { product =>
               Col(Col.Props(span = 6))(
                 renderProductCard(product)
-              )
+              ): TagMod[Object]
             }: _*
           )
         )
@@ -43,9 +46,10 @@ import scala.scalajs.js
   private def renderProductCard(product: AllProductsQuery.Data.Product) =
     Card(Card.Props(
       cover = img(src := product.pictures.headOption.flatMap(_.url).getOrElse("/assets/images/default_item.jpg"))()
-    ))(style := js.Dynamic.literal(maxWidth = "240px"))(
+    ))(
+      style := js.Dynamic.literal(maxWidth = "240px"),
       CardMeta(
-        CardMeta.Props(title = span(product.name), description = span(product.description))
+        CardMeta.Props(title = span(product.name)(), description = span(product.description)())
       )
     )
 }

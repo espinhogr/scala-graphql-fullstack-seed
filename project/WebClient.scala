@@ -9,7 +9,7 @@ import webscalajs.ScalaJSWeb
 
 object WebClient {
 
-  val slinkyVer = "0.5.2+6-10d43572"
+  val slinkyVer = "0.6.0"
   val reactVer = "16.5.2"
   
   /* 
@@ -20,9 +20,9 @@ object WebClient {
    * 1. clone the repo https://github.com/apollographql/apollo-scalajs
    * 2. change the file "build.sbt" adding at its top the lines (backtick not included):
    *     ```
-   *     version in ThisBuild := "0.6.1-SNAPSHOT"
+   *     version in ThisBuild := "0.7.1-SNAPSHOT"
    *
-   *     dynver in ThisBuild := "0.6.1-SNAPSHOT"
+   *     dynver in ThisBuild := "0.7.1-SNAPSHOT"
    * 
    *     ```
    * 3. run the command (backtick not included):
@@ -30,7 +30,7 @@ object WebClient {
    *     sbt publishLocal
    *     ```
    */
-  val apolloScalaJsVer = "0.6.1-SNAPSHOT"
+  val apolloScalaJsVer = "0.7.1-SNAPSHOT"
 
 
   private[this] val clientSettings = 
@@ -38,7 +38,10 @@ object WebClient {
     scalaJSUseMainModuleInitializer := true, // Starts scalajs from a main function
     mainClass in Compile := Some("com.mypackage.Bootstrap"),
 
-    resolvers += "Apollo Bintray" at "https://dl.bintray.com/apollographql/maven/",
+    resolvers ++= Seq(
+      "Apollo Bintray" at "https://dl.bintray.com/apollographql/maven/",
+      Resolver.bintrayRepo("hmil", "maven")
+    ),
 
     libraryDependencies ++= Seq(
       "me.shadaj" %%% "slinky-web" % slinkyVer, // React DOM, HTML and SVG tags
@@ -46,7 +49,8 @@ object WebClient {
       "me.shadaj" %%% "slinky-scalajsreact-interop" % slinkyVer, // Interop with japgolly/scalajs-react
       "com.apollographql" %%% "apollo-scalajs-core" % apolloScalaJsVer,
       "com.apollographql" %%% "apollo-scalajs-react" % apolloScalaJsVer,
-      "org.sangria-graphql" %% "sangria-circe" % "1.1.0"
+      "org.sangria-graphql" %% "sangria-circe" % "1.1.0",
+      "fr.hmil" %%% "roshttp" % "2.2.4"
     ),
     Compile / npmDependencies ++= Seq(
       "react" -> reactVer,

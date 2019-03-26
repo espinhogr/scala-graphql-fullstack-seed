@@ -3,6 +3,8 @@
 # https://www.playframework.com/documentation/latest/ScalaRouting
 # ~~~~
 
+POST    /authenticate               controllers.AuthenticationController.authenticate
+
 POST    /graphql                    controllers.GraphQLController.graphql
 
 GET     /graphiql                   controllers.GraphQLController.graphiQL

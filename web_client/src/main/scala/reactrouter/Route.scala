@@ -16,9 +16,22 @@ object ReactRoute extends js.Object {
   val Route: js.Object = js.native
 }
 
+@js.native
+trait RouteProps extends js.Object {
+  val `match`: js.Object = js.native
+  val location: js.Object = js.native
+  val history: History = js.native
+}
+
+@js.native
+trait History extends js.Object {
+  def push(path: String, state: js.UndefOr[js.Object] = js.undefined): Unit = js.native
+  def replace(path: String, state: js.UndefOr[js.Object] = js.undefined): Unit = js.native
+}
+
 @react object Route extends ExternalComponent {
   case class Props(component: UndefOr[ReactComponentClass[_]] = js.undefined,
-                   render: UndefOr[js.Function0[ReactElement]] = js.undefined,
+                   render: UndefOr[js.Function1[RouteProps, ReactElement]] = js.undefined,
                    // children -> TODO
                    path: String | js.Array[String] = "/",
                    exact: Boolean = false,

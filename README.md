@@ -1,6 +1,15 @@
 # README #
 
-Seed project for Play framework + ScalaJS using Apollo client and Sangria.
+Seed project for Play framework + ScalaJS using React, Apollo client and Sangria.
+Under the hood it uses:
+- GraphQL
+- Apollo Client
+- Play framework
+- Sangria
+- Silhouette (Authentication)
+- Slinky (React for Scala.js)
+- Antd (Components for React)
+- Slick with codegen and play-evolutions
 
 
 ## Development Guide
@@ -25,6 +34,12 @@ docker run --name=test_db_server -e 'MYSQL_ROOT_PASSWORD=root' -e 'MYSQL_ROOT_HO
 - run: runs the server and live reloads the changes
 - web_client/Compile/managedSources: generates schema.graphql and query/mutation objects for the client
 - assembly: generates the uber jar 
+
+## Usage
+
+The default login for the user interface is:
+- username: admin
+- password: admin
 
 ## Problems
 

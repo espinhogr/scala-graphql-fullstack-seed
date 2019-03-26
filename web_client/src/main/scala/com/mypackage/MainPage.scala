@@ -15,7 +15,8 @@ import slinky.core.facade.ReactElement
 import slinky.web.html._
 import product.Products
 import reactrouter.NavLink
-import util.Version
+import reactrouter.RouteProps
+import version.util.Version
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
@@ -40,17 +41,14 @@ object MainPageCSS extends js.Object
   }
 
   private def renderContent() = {
-    val testComponent: js.Function0[ReactElement] = () => h1("Test")
-
-    BrowserRouter(
+    val testComponent: js.Function1[RouteProps, ReactElement] = p => h1("Test")
       Layout(
         renderSider(),
         Layout(
-          Route(Route.Props(path = "/", exact = true, component = wrapperToClass(Products))),
-          Route(Route.Props(path = "/test", render = testComponent))
+          Route(Route.Props(path = "/app", exact = true, component = wrapperToClass(Products))),
+          Route(Route.Props(path = "/app/test", render = testComponent))
         )
       )
-    )
   }
 
   private def renderHeader() =
@@ -63,10 +61,10 @@ object MainPageCSS extends js.Object
     LayoutSider(
       Menu(
         MenuItem(
-          NavLink(NavLink.Props(to = "/"))("Products")
+          NavLink(NavLink.Props(to = "/app"))("Products")
         ),
         MenuItem(
-          NavLink(NavLink.Props(to = "/test"))("Test")
+          NavLink(NavLink.Props(to = "/app/test"))("Test")
         )
       )
     )

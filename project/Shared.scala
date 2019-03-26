@@ -18,9 +18,10 @@ object Shared {
   private[this] val profilingEnabled = false
 
   val compileOptions = Seq(
-    "-target:jvm-1.8", "-encoding", "UTF-8", "-feature", "-deprecation", "-explaintypes", "-feature", "-unchecked",
+    "-target:jvm-1.8", "-encoding", "UTF-8", "-feature", "-deprecation", "-explaintypes", "-unchecked",
     "–Xcheck-null", "-Xfatal-warnings", /* "-Xlint", */ "-Xcheckinit", "-Xfuture", "-Yrangepos", "-Ypartial-unification",
-    "-Yno-adapted-args", "-Ywarn-inaccessible", "-Ywarn-nullary-override", "-Ywarn-numeric-widen", "-Ywarn-infer-any"
+    "-Yno-adapted-args", "-Ywarn-inaccessible", "-Ywarn-nullary-override", "-Ywarn-numeric-widen", "-Ywarn-infer-any",
+    "-language:postfixOps"
   ) ++ (if (profilingEnabled) {
     "-Ystatistics:typer" +: Seq("no-profiledb", "show-profiles", "generate-macro-flamegraph").map(s => s"-P:scalac-profiling:$s")
   } else { Nil })
@@ -51,7 +52,7 @@ object Shared {
       case PathList("META-INF", "io.netty.versions.properties") => MergeStrategy.first
       case PathList("sqlj", _ @ _*) => MergeStrategy.first
       case PathList("play", "reference-overrides.conf") => MergeStrategy.first
-      case PathList("util", "Version$.class") => MergeStrategy.first
+      case PathList("version","util", "Version$.class") => MergeStrategy.first
       case "module-info.class" => MergeStrategy.discard
       case "messages" => MergeStrategy.concat
       case "pom.xml" => MergeStrategy.discard

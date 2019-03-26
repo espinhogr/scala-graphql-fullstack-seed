@@ -20,6 +20,7 @@ object Server {
 
   val playSlickV = "4.0.0"
   val slickV = "3.3.0"
+  val silhouetteV = "6.0.0-SNAPSHOT"
 
   private[this] val dependencies = {
     Seq(
@@ -31,7 +32,12 @@ object Server {
       "com.typesafe.play" %% "play-slick-evolutions" % playSlickV,
       "com.typesafe.slick" %% "slick" % slickV,
       "com.typesafe.slick" %% "slick-codegen" % slickV,
-      "mysql" % "mysql-connector-java" % "6.0.6"
+      "mysql" % "mysql-connector-java" % "6.0.6",
+      "com.mohiva" %% "play-silhouette" % silhouetteV,
+      "com.mohiva" %% "play-silhouette-password-bcrypt" % silhouetteV,
+      "com.mohiva" %% "play-silhouette-crypto-jca" % silhouetteV,
+      "com.mohiva" %% "play-silhouette-persistence" % silhouetteV,
+      "com.github.tototoshi" %% "slick-joda-mapper" % "2.4.0"
     )
   }
 

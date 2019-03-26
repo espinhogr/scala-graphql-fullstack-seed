@@ -13,7 +13,7 @@ object DatabaseUtils {
   val slickOutputDir = settingKey[File]("The directory where the database mappings are outputted")
   val runEvolutions = taskKey[Seq[File]]("Runs the evolutions on the database")
 
-  def generateSlickTables(baseDir: File, outputDir: File, classPath: Classpath, runner: ScalaRun, stream: TaskStreams): Seq[File] = {
+  def generateSlickTables(baseDir: File, outputDir: File, classPath: Seq[File], runner: ScalaRun, stream: TaskStreams): Seq[File] = {
     val config = ConfigFactory.parseFile(new File(s"${baseDir.getAbsolutePath}/conf/application.conf")).resolve()
     val url = config.getString("slick.dbs.default.db.url")
     val jdbcDriver = config.getString("slick.dbs.default.db.driver")
@@ -22,10 +22,10 @@ object DatabaseUtils {
     val user = config.getString("slick.dbs.default.db.user")
     val password = config.getString("slick.dbs.default.db.password")
     val ignoreInvalidDefaults = "true"
-    val generatorClass = "slick.codegen.SourceCodeGenerator"
+    val generatorClass = "infrastructure.JodaAwareSourceCodeGenerator"
     val outputMultipleFiles = "true"
     val generatorOptions = Array(slickProfile, jdbcDriver, url, outputDir.getPath, pkg, user, password, ignoreInvalidDefaults, generatorClass, outputMultipleFiles)
-    runner.run("slick.codegen.SourceCodeGenerator", classPath.files, generatorOptions, stream.log).failed foreach (sys error _.getMessage)
+    runner.run("slick.codegen.SourceCodeGenerator", classPath, generatorOptions, stream.log).failed foreach (sys error _.getMessage)
     stream.log.info("Written slick mappings in directory " + outputDir)
     (outputDir / pkg.replace('.', '/')).listFiles()
   }
@@ -58,7 +58,10 @@ object DatabaseUtils {
       val srcDir = (Compile / sourceDirectory).value
       val compilers = Keys.compilers.value
       val classPath = (Compile / dependencyClasspath).value
-      val fileToCompile = srcDir / "infrastructure/ApplyEvolutions.scala"
+      val filesToCompile = Seq(
+        srcDir / "infrastructure/ApplyEvolutions.scala",
+        srcDir / "infrastructure/JodaAwareSourceCodeGenerator.scala"
+      )
       val outputDir = (Compile / classDirectory).value
       val resourcesDir = (Compile / resourceDirectory).value
       val options = Shared.compileOptions
@@ -69,7 +72,7 @@ object DatabaseUtils {
 
       QuickCompiler.scalac(
         compilers,
-        Seq(fileToCompile),
+        filesToCompile,
         QuickCompiler.noChanges,
         classPath.map(_.data),
         outputDir,
@@ -99,7 +102,7 @@ object DatabaseUtils {
       runEvolutions.value
       val dir = slickOutputDir.value
       val baseDir = baseDirectory.value
-      val classPath = (Compile / dependencyClasspath).value
+      val classPath = (Compile / dependencyClasspath).value.files :+ (Compile / classDirectory).value
       val runner = (Compile / Keys.runner).value
       val stream = streams.value
       generateSlickTables(baseDir, dir, classPath, runner, stream)

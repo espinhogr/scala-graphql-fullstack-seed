@@ -1,30 +1,32 @@
 package controllers
 
+import auth.AuthEnvironment
 import com.google.inject.Inject
+import com.mohiva.play.silhouette.api.Silhouette
+import com.mypackage.GraphQLSchema._
+import com.mypackage.RequestContext
 import play.api.libs.json._
 import play.api.mvc.AbstractController
 import play.api.mvc.ControllerComponents
 import play.twirl.api.Html
-import repositories.PictureRepo
-import repositories.ProductRepo
 import sangria.ast.Document
 import sangria.execution.ErrorWithResolver
 import sangria.execution.Executor
 import sangria.execution.QueryAnalysisError
 import sangria.marshalling.playJson._
 import sangria.parser.QueryParser
-import com.mypackage.GraphQLSchema._
-import com.mypackage.RequestContext
 
 import scala.concurrent.Future
 import scala.util.Failure
 import scala.util.Success
 
-class GraphQLController @Inject()(cc: ControllerComponents, requestContext: RequestContext) extends AbstractController(cc) {
+class GraphQLController @Inject()(cc: ControllerComponents,
+                                  e: Silhouette[AuthEnvironment],
+                                  requestContext: RequestContext) extends AbstractController(cc) {
 
   implicit val execution = cc.executionContext
 
-  def graphql = Action.async(parse.json) { request ⇒
+  def graphql = e.SecuredAction.async(parse.json) { request ⇒
     def parseVariables(variables: String) =
       if (variables.trim == "" || variables.trim == "null") Json.obj() else Json.parse(variables).as[JsObject]
 
@@ -55,7 +57,7 @@ class GraphQLController @Inject()(cc: ControllerComponents, requestContext: Requ
         case error: ErrorWithResolver ⇒ InternalServerError(error.resolveError)
       }
 
-  def graphiQL = Action {
+  def graphiQL = e.UnsecuredAction {
     Html
     Ok(views.html.graphiql())
   }

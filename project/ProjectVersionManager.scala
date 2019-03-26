@@ -4,7 +4,7 @@ import sbt.Keys._
 object ProjectVersionManager {
   def writeConfig(projectId: String, projectName: String, projectPort: Int) = Def.task {
     val content =s"""
-                    |package util
+                    |package version.util
                     |
                     |object Version {
                     |  val projectId = "$projectId"
