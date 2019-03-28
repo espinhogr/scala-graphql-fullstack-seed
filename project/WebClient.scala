@@ -52,7 +52,7 @@ object WebClient {
       "react" -> reactVer,
       "react-dom" -> reactVer,
       "react-proxy" -> "1.1.8",
-      "react-router-dom" -> "4.4.0",
+      "react-router-dom" -> "5.0.0",
       "apollo-boost" -> "0.1.16",
       "apollo-cache-inmemory" -> "1.4.3",
       "react-apollo" -> "2.2.2",
