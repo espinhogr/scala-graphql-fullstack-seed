@@ -3,16 +3,18 @@ package repositories
 import com.mypackage.PictureRepoLike
 import com.mypackage.Domain
 import com.mypackage.Domain.Picture
+import database.Tables
+import javax.inject.Inject
+import slick.jdbc.MySQLProfile.api._
 
-class PictureRepo extends PictureRepoLike {
+import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.Future
 
-  private val pictures = Map(
-    "1" -> List(Picture(50, 50, Some("/assets/images/cheesecake1.jpeg")),
-                Picture(50,30, Some("/assets/images/cheesecake2.jpeg"))
-            ),
-    "2" -> List(Picture(60, 30, Some("/assets/images/nutella.jpeg")))
-  )
+class PictureRepo @Inject()(db: Database) extends PictureRepoLike {
 
+  override def picturesByProduct(id: String): Future[Seq[Picture]] = {
+    val action = Tables.Pictures.filter(_.productid === id.toInt).result
+    db.run(action).map(_.map(p => Picture(p.width, p.height, p.url)))
+  }
 
-  override def picturesByProduct(id: String): List[Domain.Picture] = pictures.getOrElse(id, List())
 }

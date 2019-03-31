@@ -1,3 +1,4 @@
+import com.typesafe.config.ConfigFactory
 import com.typesafe.sbt.jse.JsEngineImport.JsEngineKeys
 import com.typesafe.sbt.packager.archetypes.JavaAppPackaging
 import com.typesafe.sbt.packager.docker.DockerPlugin
@@ -16,14 +17,26 @@ import scalajsbundler.sbtplugin.WebScalaJSBundlerPlugin
 import webscalajs.WebScalaJS.autoImport._
 
 object Server {
+
+  val playSlickV = "4.0.0"
+  val slickV = "3.3.0"
+
   private[this] val dependencies = {
     Seq(
       PlayImport.guice,
-      "org.sangria-graphql" %% "sangria-play-json" % "1.0.5"
+      PlayImport.evolutions,
+      "net.codingwell" %% "scala-guice" % "4.2.3",
+      "org.sangria-graphql" %% "sangria-play-json" % "1.0.5",
+      "com.typesafe.play" %% "play-slick" % playSlickV,
+      "com.typesafe.play" %% "play-slick-evolutions" % playSlickV,
+      "com.typesafe.slick" %% "slick" % slickV,
+      "com.typesafe.slick" %% "slick-codegen" % slickV,
+      "mysql" % "mysql-connector-java" % "6.0.6"
     )
   }
 
-  private[this] lazy val serverSettings = Shared.commonSettings ++ Seq(
+
+  private[this] lazy val serverSettings = Shared.commonSettings ++ DatabaseUtils.settings ++ Seq(
     name := Shared.projectId,
     description := Shared.projectName,
 

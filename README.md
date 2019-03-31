@@ -15,6 +15,11 @@ Seed project for Play framework + ScalaJS using Apollo client and Sangria.
 ## Setup
 Follow the setup [here](https://slinky.shadaj.me/docs/installation/) for IntelliJ support.
 
+The project needs a mysql database to work, if you are using docker you can run the following command to start it:
+```
+docker run --name=test_db_server -e 'MYSQL_ROOT_PASSWORD=root' -e 'MYSQL_ROOT_HOST=%' -e 'MYSQL_DATABASE=test' -p 3306:3306 -d mysql/mysql-server:5.7.19
+```
+
 ## Commands
 
 - run: runs the server and live reloads the changes

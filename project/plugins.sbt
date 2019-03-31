@@ -7,7 +7,7 @@ resolvers += Resolver.url("jetbrains-bintray", url("http://dl.bintray.com/jetbra
 
 
 // The Play plugin
-addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.6.20")
+addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.7.0")
 
 // SBT-Web plugins
 addSbtPlugin("com.typesafe.sbt" % "sbt-web" % "1.4.4")

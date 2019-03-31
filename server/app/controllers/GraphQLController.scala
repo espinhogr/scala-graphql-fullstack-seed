@@ -20,14 +20,9 @@ import scala.concurrent.Future
 import scala.util.Failure
 import scala.util.Success
 
-class GraphQLController @Inject()(cc: ControllerComponents) extends AbstractController(cc) {
+class GraphQLController @Inject()(cc: ControllerComponents, requestContext: RequestContext) extends AbstractController(cc) {
 
   implicit val execution = cc.executionContext
-
-  val requestContext = new RequestContext {
-    val productRepo = new ProductRepo
-    val pictureRepo = new PictureRepo
-  }
 
   def graphql = Action.async(parse.json) { request ⇒
     def parseVariables(variables: String) =
