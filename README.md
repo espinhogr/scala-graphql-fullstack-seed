@@ -31,9 +31,9 @@ docker run --name=test_db_server -e 'MYSQL_ROOT_PASSWORD=root' -e 'MYSQL_ROOT_HO
 
 ## Commands
 
-- run: runs the server and live reloads the changes
-- web_client/Compile/managedSources: generates schema.graphql and query/mutation objects for the client
-- assembly: generates the uber jar 
+- _run_: runs the server and live reloads the changes
+- _web_client/Compile/managedSources_: generates schema.graphql and query/mutation objects for the client (you shouldn't need to use this explicitly)
+- _assembly_: generates the uber jar 
 
 ## Usage
 
@@ -41,12 +41,14 @@ The default login for the user interface is:
 - username: admin
 - password: admin
 
+It is created via evolutions, remove it from there if you want to change it. Also if you want to create another one manually there is an app called _ManualUserGenerator_ to do that.
+
 ## Problems
 
 - WebpackDevServer is not used at the moment
 - When a new dependency is added to the npmDependencies the bundle.js is not rebuilt.
 - The build is slow because some files are not cached (static query generation and two rounds of js bundling) and the dist directory is deleted.
-- Add test framework
+- Add test framework for front-end
 - Refetching the queries instead of changing the apollo cache.
 
 ## Credits
