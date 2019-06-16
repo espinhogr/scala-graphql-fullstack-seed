@@ -16,24 +16,55 @@ Under the hood it uses:
 
 ### Prerequisites
 
-- Node installed on the dev box
-- SBT installed on the dev box
-- Follow the instructions in the file `project/WebClient.scala`
-- If an error at build time appears saying that module `style-loader` cannot be found, run `npm install -g style-loader css-loader`
+1. Docker installed on the dev box.
+   See: [https://github.com/frgomes/bash-scripts/blob/master/sysadmin-install/install-docker-ce.sh](https://github.com/frgomes/bash-scripts/blob/master/sysadmin-install/install-docker-ce.sh) 
 
-## Setup
+2. Node installed on the dev box.
+  See: [http://github.com/frgomes/bash-scripts/blob/master/user-install/install-node.sh](http://github.com/frgomes/bash-scripts/blob/master/user-install/install-node.sh) 
+
+3. SBT installed on the dev box
+  See: [https://github.com/frgomes/bash-scripts/blob/master/user-install/install-scala.sh](https://github.com/frgomes/bash-scripts/blob/master/user-install/install-scala.sh) 
+
+4. Follow the instructions in the file `project/WebClient.scala`.
+
+5. If an error at build time appears saying that module `style-loader` cannot be found, run `npm install -g style-loader css-loader`
+
+### IDE support
 Follow the setup [here](https://slinky.shadaj.me/docs/installation/) for IntelliJ support.
 
-The project needs a mysql database to work, if you are using docker you can run the following command to start it:
-```
-docker run --name=test_db_server -e 'MYSQL_ROOT_PASSWORD=root' -e 'MYSQL_ROOT_HOST=%' -e 'MYSQL_DATABASE=test' -p 3306:3306 -d mysql/mysql-server:5.7.19
+### Build instructions
+
+* Make sure you have already built and published locally ``apollo-scalajs`` according to instructions at `project/WebClient.scala`.
+
+* Start a MySQL container via Docker Compose.
+```bash
+$ docker-compose up -d
 ```
 
-## Commands
+**Note**: Only MySQL is supported at the moment. In order to support other databases, we should have multiple sets of DDLs and evolutions per database vendor.
 
-- _run_: runs the server and live reloads the changes
-- _web_client/Compile/managedSources_: generates schema.graphql and query/mutation objects for the client (you shouldn't need to use this explicitly)
-- _assembly_: generates the uber jar 
+* Run test cases:
+```bash
+$ sbt clean test
+```
+
+* Runs the server and live reloads changes:
+```
+$ sbt run
+```
+
+* Generates a fat jar:
+```
+$ sbt assembly
+```
+
+## Code generation
+
+Generates schema.graphql and query/mutation objects for the client.
+You shouldn't need to use this explicitly.
+```
+$ sbt web_client/Compile/managedSources
+```
 
 ## Usage
 

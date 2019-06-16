@@ -1,10 +1,21 @@
-# Created by .ignore support plugin (hsz.mobi)
-### SBT template
-# Simple Build Tool
-# http://www.scala-sbt.org/release/docs/Getting-Started/Directories.html#configuring-version-control
-
-dist/
+*~
+*\.ZILESAVE
+*\.tmp
+*\.log
+*\.out
+/\.classpath
+/\.project
+/\.settings
+/\.idea
+/\.idea_modules
+/\.lib
+*\.iml
+\.classpath_nb
+\.ensime
+\.ensime_lucene
+\.ensime_cache/
 target/
+dist/
 lib_managed/
 src_managed/
 project/boot/
@@ -12,7 +23,7 @@ project/plugins/project/
 .history
 .cache
 .lib/
-
 .idea/
-logs
-
+logs/
+lib/
+tmp/

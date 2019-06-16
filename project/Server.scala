@@ -33,6 +33,7 @@ object Server {
       "com.typesafe.slick" %% "slick" % slickV,
       "com.typesafe.slick" %% "slick-codegen" % slickV,
       "mysql" % "mysql-connector-java" % "6.0.6",
+      "org.postgresql" % "postgresql" % "42.2.5",
       "com.mohiva" %% "play-silhouette" % silhouetteV,
       "com.mohiva" %% "play-silhouette-password-bcrypt" % silhouetteV,
       "com.mohiva" %% "play-silhouette-crypto-jca" % silhouetteV,
