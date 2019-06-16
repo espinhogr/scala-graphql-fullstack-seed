@@ -13,24 +13,26 @@ object WebClient {
   val reactVer = "16.5.2"
   
   /* 
-   * This version is not available yet, the changes needed to make this project work are in the master but still
-   * need to be released.
+   * Some dependencies needed to make this project work are in the master branch, still to be released.
    * 
-   * In order to make this work, follow these steps: 
-   * 1. clone the repo https://github.com/apollographql/apollo-scalajs
-   * 2. change the file "build.sbt" adding at its top the lines (backtick not included):
-   *     ```
-   *     version in ThisBuild := "0.7.1-SNAPSHOT"
+   * In order to make this project work, follow these steps: 
    *
-   *     dynver in ThisBuild := "0.7.1-SNAPSHOT"
-   * 
+   * 1. Clone the repo https://github.com/frgomes/apollo-scalajs
    *     ```
-   * 3. run the command (backtick not included):
+   *     $ git clone https://github.com/frgomes/apollo-scalajs
    *     ```
-   *     sbt publishLocal
+   * 2. Run SBT, publishLocal and obtain the published version information:
    *     ```
+   *     $ cd apollo-scalajs
+   *     $ sbt
+   *     > publishLocal
+   *     > show core/version
+   *     0.7.0+26-5cd49197+20190616-1445
+   *     > quit
+   *     ```
+   * 3. update variable ``apolloScalaJsVer`` so that it contains the version information just obtained.
    */
-  val apolloScalaJsVer = "0.7.1-SNAPSHOT"
+  val apolloScalaJsVer = "0.7.0+27-0badbdb2"
 
 
   private[this] val clientSettings = 
